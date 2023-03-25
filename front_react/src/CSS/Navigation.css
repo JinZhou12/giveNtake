@@ -1,0 +1,14 @@
+.navbar-brand{
+  margin-left:12px;
+  /* margin-right: 70% !important; */
+}
+
+.navbar-nav{
+  margin-right:5px;
+}
+
+.justify-content-end{
+  /* put the element to the right end */
+  display: flex;
+  justify-content: flex-end;
+}
