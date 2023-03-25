@@ -1,11 +1,10 @@
 // import logo from './logo.svg';
-import React, {Component} from 'react';
-import ItemList from './ItemList';
-import clothes from '../Consts/clothes';
-import '../CSS/App.css';
+import React, { Component } from "react";
+import ItemList from "./Components/ItemList";
+import clothes from "./Consts/clothes";
+import "../CSS/App.css";
 
 export default class App extends Component {
-
   render() {
     return (
       <div className="tc">
@@ -18,10 +17,10 @@ export default class App extends Component {
             <text> About </text>
             <text> Profile </text>
           </div>
-        </div>  
-          <div>
-            <ItemList items={clothes}/>
-          </div>
+        </div>
+        <div>
+          <ItemList items={clothes} />
+        </div>
       </div>
     );
   }
