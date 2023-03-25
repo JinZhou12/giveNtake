@@ -1,27 +1,32 @@
-// import logo from './logo.svg';
-import React, { Component } from "react";
-import ItemList from "./Components/ItemList";
-import clothes from "./Consts/clothes";
-import "../CSS/App.css";
+import React, {Component} from 'react';
+import ItemList from './Components/ItemList';
+import Navigation from './Components/Navigation';
+import Categories from './Components/Categories';
+import clothes from './Consts/clothes';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './CSS/App.css';
 
-export default class App extends Component {
+class App extends Component {
+
+  constructor(props) { 
+    super(props);
+    this.state = {  
+
+    }
+  }
+
   render() {
     return (
       <div className="tc">
-        <div className="Navigation">
-          <div className="logo">
-            <text> Give&Take </text>
-          </div>
-          <div className="menu">
-            <text> Main </text>
-            <text> About </text>
-            <text> Profile </text>
-          </div>
-        </div>
-        <div>
-          <ItemList items={clothes} />
+        <Navigation/>  
+        <div className="main">
+          <Categories/>
+          <ItemList items={clothes}/>
         </div>
       </div>
     );
   }
 }
+
+export default App;
+
