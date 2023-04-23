@@ -10,22 +10,16 @@ const Categories = () => {
       <Navbar bg="lg" variant="lg">
         <Nav className="me-auto">
           <NavDropdown title="Clothing" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#clothing/men">
-              Men's Clothing
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#clothing/women">
-              Women's Clothing
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#clothing/kids">
-              Kids Clothing
-            </NavDropdown.Item>
+            <NavDropdown.Item href="clothing">All Clothing</NavDropdown.Item>
+            <NavDropdown.Item href="clothing/men"> Men's Clothing</NavDropdown.Item>
+            <NavDropdown.Item href="clothing/women"> Women's Clothing</NavDropdown.Item>
+            <NavDropdown.Item href="clothing/kids">Kids Clothing</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Shoes" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#shoes/men">Men's Shoes</NavDropdown.Item>
-            <NavDropdown.Item href="#shoes/women">
-              Women's Shoes
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#shoes/kids">Kids Shoes</NavDropdown.Item>
+            <NavDropdown.Item href="shoes">All Shoes</NavDropdown.Item>
+            <NavDropdown.Item href="shoes/men">Men's Shoes</NavDropdown.Item>
+            <NavDropdown.Item href="shoes/women">Women's Shoes </NavDropdown.Item>
+            <NavDropdown.Item href="shoes/kids">Kids Shoes</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form className="searchBar">

@@ -1,13 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import './CSS/index.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ItemList from './Components/ItemList';
+import Navigation from './Components/Navigation';
+import Categories from './Components/Categories';
+import Login from './Components/Login';
+import Register from './Components/Register';
+import UserProfile from './Components/UserProfile';
+import clothes from './Consts/clothes';
+import "bootstrap/dist/css/bootstrap.min.css";
+import './CSS/index.css';
+import 'tachyons';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element:  <>
+                <Navigation/>
+                {/* <Categories/>
+                <ItemList items={clothes}/> */}
+              </>,
+    // errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element:  <>
+                    <Categories/>
+                    <ItemList items={clothes}/>
+                  </>,
+      },
+      {
+        path: "/donation",
+        element: <div>Donations</div>,
+      },
+      {
+        path: "/login",
+        element: <Login/>,
+      },
+      {
+        path: "/register",
+        element: <Register/>,
+      },
+      {
+        path: "/profile",
+        element: <UserProfile/>,
+      }
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

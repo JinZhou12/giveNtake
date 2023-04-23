@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ProfilePage() {
+function UserProfile() {
   const [name, setName] = useState("John Doe");
   const [email, setEmail] = useState("johndoe@example.com");
   const [password, setPassword] = useState("");
@@ -37,5 +37,5 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default UserProfile;
 

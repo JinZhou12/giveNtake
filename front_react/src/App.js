@@ -1,37 +1,26 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ItemList from "./Components/ItemList";
-import Navigation from "./Components/Navigation";
-import Categories from "./Components/Categories";
-import userProfile from "./Components/userProfile";
-import clothes from "./Consts/clothes";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./CSS/App.css";
+// import React, { Component } from "react";
+// // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// // import ItemList from "./Components/ItemList";
+// import Navigation from "./Components/Navigation";
+// // import Categories from "./Components/Categories";
+// // import UserProfile from "./Components/userProfile";
+// // import clothes from "./Consts/clothes";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+// import "./CSS/App.css";
 
-  render() {
-    return (
-      <div className="tc">
-        <Navigation />
-        <Router>
-          <Routes>
-            <Route path="/#personal">
-              {/* <Main> */}
-              <Categories />
-              <ItemList items={clothes} />
-              {/* </Main> */}
-            </Route>
-            <Route path="/#donation">{/* <Main /> */}</Route>
-          </Routes>
-        </Router>
-      </div>
-    );
-  }
-}
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {};
+//   }
 
-export default App;
+//   render() {
+//     return (
+//       <div>
+//         <Navigation />
+//       </div>
+//     );
+//   }
+// }
+
+// export default App;
