@@ -7,7 +7,7 @@ const Item = (props) => {
         <div className="item">
           <img src={props.item.image} alt={'nothing'} width='100%' height='200'/>
           <div>{props.item.name}</div>
-          <div>{props.item.price}</div>
+          <div>${props.item.price}</div>
         </div>
     );
   }
@@ -15,8 +15,8 @@ const Item = (props) => {
 const ItemList = (props) => {
     return (
         <div className="list">
-          {props.items.map((item) => (
-            <Item item={item} />
+          {Object.keys(props.items).map((key) => (
+            <Item item={props.items[key]} key={key}/>
           ))}
         </div>
     );
