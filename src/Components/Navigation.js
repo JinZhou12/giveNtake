@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { Outlet } from "react-router-dom";
@@ -6,9 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import "../CSS/Navigation.css";
 
 const Navigation = (props) => {
-  
-
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
   console.log(user);
 
   return (
@@ -26,21 +24,23 @@ const Navigation = (props) => {
           </LinkContainer>
         </Nav>
         <Nav className="ms-auto">
-          {user ?   <>
-                      <LinkContainer to="/cart">
-                        <Nav.Link> Shopping Cart </Nav.Link>
-                      </LinkContainer>
-                      <LinkContainer to="/profile">
-                        <Nav.Link> Profile </Nav.Link>
-                      </LinkContainer>
-                    </>
-                : <LinkContainer to="/login">
-                    <Nav.Link> Login </Nav.Link>
-                  </LinkContainer> }
-          
+          {user ? (
+            <>
+              <LinkContainer to="/cart">
+                <Nav.Link> Shopping Cart </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/profile">
+                <Nav.Link> Profile </Nav.Link>
+              </LinkContainer>
+            </>
+          ) : (
+            <LinkContainer to="/login">
+              <Nav.Link> Login </Nav.Link>
+            </LinkContainer>
+          )}
         </Nav>
       </Navbar>
-      <Outlet context={[user, setUser]}/>
+      <Outlet context={[user, setUser]} />
     </>
   );
 };
