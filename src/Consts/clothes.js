@@ -1,4 +1,4 @@
-const clothes = [
+export const clothes = [
     {
         id: 1,
         name: 'T-shirt',
@@ -518,5 +518,3 @@ const clothes = [
         image: 'https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
 ]
-
-export default clothes;

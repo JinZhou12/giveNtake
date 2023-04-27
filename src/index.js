@@ -12,9 +12,12 @@ import Categories from './Components/Categories';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import UserProfile from './Components/UserProfile';
-import clothes from './Consts/clothes';
+import DonationList from './Components/DonationList';
+import {donations} from './Consts/donations';
+import {clothes} from './Consts/clothes';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './CSS/index.css';
+import './CSS/App.css';
 import 'tachyons';
 
 const router = createBrowserRouter([
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/donation",
-        element: <div>Donations</div>,
+        element: <DonationList donations={donations}/>,
       },
       {
         path: "/login",

@@ -35,7 +35,7 @@ function Register (props){
             .then(response => response.json())
             .then(res => {
                 if (res.err){
-                    console.log(res.err);
+                    alert(res.err);
                 } else {
                     setUser(res);
                     navigate('/')
