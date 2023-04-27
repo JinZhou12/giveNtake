@@ -7,12 +7,12 @@ function Register (props){
     let navigate = useNavigate();
 
     const [user, setUser] = useOutletContext();
-    const [name, setName] = useState('');
+    const [username, setuserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
 
-    const onNameChange = (event)=> setName(event.target.value);
+    const onUsernameChange = (event)=> setuserName(event.target.value);
 
     const onEmailChange = (event)=> setEmail(event.target.value);
 
@@ -22,24 +22,26 @@ function Register (props){
 
     const onSubmitRegister = (event)=> {
         event.preventDefault()
-        // fetch('https://shrouded-plains-66034.herokuapp.com/register', {
-        //     method: 'post',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify({
-        //         name: this.state.name,
-        //         email: this.state.email,
-        //         password: this.state.password 
-        //     })
-        // })
-        //     .then(response => response.json())
-        //     .then(user => {
-        //         if(user.user_id){
-        //             this.props.loadUser(user);
-        //             this.props.onRouteChange('home');
-        //         }
-        //     })
-        setUser({email: email, name: name, password: password})
-        navigate('/');
+        fetch('https://localhost:4000/register', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password,
+                password2: password2
+            })
+        })
+            .then(response => response.json())
+            .then(res => {
+                if (res.err){
+                    console.log(res.err);
+                } else {
+                    setUser(res);
+                    navigate('/')
+                }
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -56,7 +58,7 @@ function Register (props){
                       type="text" 
                       name="name"  
                       id="name"
-                      onChange={onNameChange}/>
+                      onChange={onUsernameChange}/>
                 </div>
                 <div className="mt3">
                   <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
@@ -80,7 +82,7 @@ function Register (props){
                   <label className="db fw6 lh-copy f6" htmlFor="password2">Re-enter Password</label>
                   <input 
                       className="b pa2 input-reset ba bg-transparent hover-bg-black w-100" 
-                      type="password2" 
+                      type="password" 
                       name="password2"  
                       id="password2"
                       onChange={onPassword2Change}/>
