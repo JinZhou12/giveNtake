@@ -1,10 +1,9 @@
-.donation{
-    /* width: 100%; */
-    /* background-color: yellow; */
-    height:  150px;;
-    justify-content: center;
-    align-items: center;
-    margin: 2% 5% 0 5%;
-    border-radius: 10px;
-    border: 1px solid #000000;
+.donation {
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+  margin: 2% 5% 0 5%;
+  border-radius: 10px;
+  border: 1px solid #000000;
 }

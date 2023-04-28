@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { users } from "../Consts/user";
+import DropBox from "./DropBox";
+import ShowImage from "./ShowImage";
+import "../CSS/UploadItem.css";
 
 // function Image(props) {
 //   const [image, setImage] = React.useState(null);
@@ -31,16 +35,29 @@ import { users } from "../Consts/user";
 //   );
 // }
 
-function Upload(props) {
+function UploadItem(props) {
   let navigate = useNavigate();
 
-  const [title, setTitle] = React.useState("");
-  const [category, setCategory] = React.useState("");
-  const [price, setPrice] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [image, setImage] = React.useState("");
-  const [condition, setCondition] = React.useState("");
-  const [size, setSize] = React.useState("");
+  const [user, setUser] = useOutletContext();
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [condition, setCondition] = useState("");
+  const [size, setSize] = useState("");
+
+  const [images, setImages] = useState([]);
+
+  const onDrop = useCallback((acceptedFiles) => {
+    acceptedFiles.map((file, index) => {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setImages((prevState) => [{ id: index, src: e.target.result }]);
+      };
+      reader.readAsDataURL(file);
+      return file;
+    });
+  }, []);
 
   const onTitleChange = (event) => {
     setTitle(event.target.value);
@@ -56,10 +73,6 @@ function Upload(props) {
 
   const onDescriptionChange = (event) => {
     setDescription(event.target.value);
-  };
-
-  const onImageChange = (event) => {
-    setImage(event.target.value);
   };
 
   const onSubmitItem = (event) => {
@@ -79,14 +92,7 @@ function Upload(props) {
     //             this.props.onRouteChange('home');
     //         }
     //     })
-    console.log("hi");
   };
-  // get onSubmitSignIn() {
-  //   return this._onSubmitSignIn;
-  // }
-  // set onSubmitSignIn(value) {
-  //   this._onSubmitSignIn = value;
-  // }
 
   return (
     <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -94,17 +100,8 @@ function Upload(props) {
         <form className="measure">
           <fieldset id="upload" className="ba b--transparent ph0 mh0">
             <legend className="f1 fw6 ph0 mh0">Upload Item</legend>
-            <div className="form-group">
-              <label htmlFor="image">Image</label>
-              <input
-                type="text"
-                className="form-control"
-                id="image"
-                placeholder="Image here "
-                value={props.value}
-                onChange={props.onChange}
-              />
-            </div>
+            <DropBox onDrop={onDrop} />
+            <ShowImage images={images} />
             <div className="mt3">
               <label className="db fw6 lh-copy f6" htmlFor="item-title">
                 Title
@@ -147,18 +144,13 @@ function Upload(props) {
               onClick={onSubmitItem}
               className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
-              value="List"
+              value="Submit"
             />
           </div>
-          {/* <div className="lh-copy mt3">
-            <Link to="/register" className="f6 link dim black db pointer">
-              Register
-            </Link>
-          </div> */}
         </form>
       </main>
     </article>
   );
 }
 
-export default Upload;
+export default UploadItem;

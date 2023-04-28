@@ -10,7 +10,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import UserProfile from "./Components/UserProfile";
 import DonationList from "./Components/DonationList";
-import Upload from "./Components/UploadItem";
+import UploadItem from "./Components/UploadItem";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -21,11 +21,7 @@ import "tachyons";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <Navigation />
-      </>
-    ),
+    element: <Navigation />,
     // errorElement: <ErrorPage />,
     children: [
       {
@@ -52,10 +48,12 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <UserProfile />,
-      },
-      {
-        path: "/upload",
-        element: <Upload />,
+        children: [
+          {
+            path: "/profile/upload",
+            element: <UploadItem />,
+          },
+        ],
       },
     ],
   },

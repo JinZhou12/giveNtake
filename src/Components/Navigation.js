@@ -7,23 +7,20 @@ import "../CSS/Navigation.css";
 
 const Navigation = (props) => {
   const [user, setUser] = useState("");
-  console.log(user);
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" sticky="top">
+      <Navbar className="mb3" bg="dark" variant="dark" sticky="top">
         <LinkContainer to="/">
           <Navbar.Brand> Give&Take </Navbar.Brand>
         </LinkContainer>
-        <Nav className="me-auto">
+        <Nav className="ms-auto">
           <LinkContainer to="/">
             <Nav.Link> Personal </Nav.Link>
           </LinkContainer>
           <LinkContainer to="/donation">
             <Nav.Link> Donation </Nav.Link>
           </LinkContainer>
-        </Nav>
-        <Nav className="ms-auto">
           {user ? (
             <>
               <LinkContainer to="/cart">

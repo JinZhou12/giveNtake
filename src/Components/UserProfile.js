@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
+import { Outlet } from "react-router-dom";
 import { withRouter } from "react-router";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
-import "../CSS/Dashboard.css";
 import { LinkContainer } from "react-router-bootstrap";
+import "../CSS/Dashboard.css";
 
 function UserProfile() {
+  const [user, setUser] = useOutletContext();
   const [name, setName] = useState("John Doe");
   const [email, setEmail] = useState("johndoe@example.com");
   const [password, setPassword] = useState("");
@@ -19,7 +21,7 @@ function UserProfile() {
   }
 
   return (
-    <div className="profile-page flex-row">
+    <div className="profile-page flex">
       <div className="fl w-25">
         <Nav>
           <div className="sidebar-sticky flex-column">
@@ -51,19 +53,17 @@ function UserProfile() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setPage(3);
-                }}
-              >
-                Listing
-              </Nav.Link>
+              <LinkContainer to="/profile/upload">
+                <Nav.Link> Listing </Nav.Link>
+              </LinkContainer>
             </Nav.Item>
           </div>
         </Nav>
       </div>
-      <div className="fl w-75" />
-      {page === 0 ? (
+      {/* <div className="fl w-75"> */}
+      <Outlet context={[user, setUser]} />
+      {/* </div> */}
+      {/* {page === 0 ? (
         <>Xd</>
       ) : page === 1 ? (
         <>Xd2</>
@@ -75,7 +75,7 @@ function UserProfile() {
           <Nav.Link> Click here to list an item </Nav.Link>
         </LinkContainer>
         // <>Xd4</>
-      )}
+      )} */}
     </div>
   );
 }

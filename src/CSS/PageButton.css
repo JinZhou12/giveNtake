@@ -1,0 +1,31 @@
+.Button {
+  cursor: pointer;
+}
+
+.pageButtons {
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 10px;
+  margin-bottom: 2%;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pageButton {
+  margin: 0 0.3%;
+  padding: 0 0.5%;
+  min-width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.pageSelected {
+  border: 1px solid black;
+  /* width: 100%; */
+}
+
+.pageSelect {
+  margin-right: 5%;
+  margin-top: 6%;
+  justify-content: flex-end;
+}

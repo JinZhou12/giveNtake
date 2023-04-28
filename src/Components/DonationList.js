@@ -7,7 +7,7 @@ const Donation = (props) => {
 
   return (
     <div
-      className="fr donation"
+      className="flex donation"
       style={{ backgroundImage: `url(${image})`, backgroundSize: "contain" }}
     >
       <div> {donation.title}</div>
@@ -22,7 +22,7 @@ const DonationList = (props) => {
   const donations = props.donations;
 
   return (
-    <div className="fc donationList">
+    <div className="flex-column donationList">
       {Object.keys(donations).map((key) => (
         <Donation donation={donations[key]} key={key} />
       ))}

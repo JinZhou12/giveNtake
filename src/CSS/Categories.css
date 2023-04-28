@@ -1,3 +1,8 @@
-.searchBar{
-    margin-right: 1%;
+.categories {
+  margin: 0 2%;
+}
+
+.searchBar {
+  margin-right: 35%;
+  width: 30%;
 }
