@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import App from './App';
 import reportWebVitals from "./reportWebVitals";
 import ItemList from "./Components/ItemList";
@@ -39,26 +36,17 @@ const router = createBrowserRouter([
             <ItemList items={clothes} />
           </>
         ),
-        element: (
-          <>
-            <Categories />
-            <ItemList items={clothes} />
-          </>
-        ),
       },
       {
         path: "/donation",
-        element: <DonationList donations={donations} />,
         element: <DonationList donations={donations} />,
       },
       {
         path: "/login",
         element: <Login />,
-        element: <Login />,
       },
       {
         path: "/register",
-        element: <Register />,
         element: <Register />,
       },
       {
@@ -73,7 +61,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
