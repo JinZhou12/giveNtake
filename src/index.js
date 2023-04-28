@@ -1,63 +1,69 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import App from './App';
-import reportWebVitals from './reportWebVitals';
-import ItemList from './Components/ItemList';
-import Navigation from './Components/Navigation';
-import Categories from './Components/Categories';
-import Login from './Components/Login';
-import Register from './Components/Register';
-import UserProfile from './Components/UserProfile';
-import DonationList from './Components/DonationList';
-import {donations} from './Consts/donations';
-import {clothes} from './Consts/clothes';
+import reportWebVitals from "./reportWebVitals";
+import ItemList from "./Components/ItemList";
+import Navigation from "./Components/Navigation";
+import Categories from "./Components/Categories";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import UserProfile from "./Components/UserProfile";
+import DonationList from "./Components/DonationList";
+import Upload from "./Components/UploadItem";
+import { donations } from "./Consts/donations";
+import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './CSS/index.css';
-import './CSS/App.css';
-import 'tachyons';
+import "./CSS/index.css";
+import "./CSS/App.css";
+import "tachyons";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:  <>
-                <Navigation/>
-                {/* <Categories/>
+    element: (
+      <>
+        <Navigation />
+        {/* <Categories/>
                 <ItemList items={clothes}/> */}
-              </>,
+      </>
+    ),
     // errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element:  <>
-                    <Categories/>
-                    <ItemList items={clothes}/>
-                  </>,
+        element: (
+          <>
+            <Categories />
+            <ItemList items={clothes} />
+          </>
+        ),
       },
       {
         path: "/donation",
-        element: <DonationList donations={donations}/>,
+        element: <DonationList donations={donations} />,
       },
       {
         path: "/login",
-        element: <Login/>,
+        element: <Login />,
       },
       {
         path: "/register",
-        element: <Register/>,
+        element: <Register />,
       },
       {
         path: "/profile",
-        element: <UserProfile/>,
-      }
+        element: <UserProfile />,
+      },
+      {
+        path: "/upload",
+        element: <Upload />,
+      },
     ],
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
