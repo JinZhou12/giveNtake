@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { withRouter } from "react-router";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import "../CSS/Dashboard.css";
+import { LinkContainer } from "react-router-bootstrap";
 
 function UserProfile() {
   const [name, setName] = useState("John Doe");
@@ -69,7 +70,11 @@ function UserProfile() {
       ) : page === 2 ? (
         <>Xd3</>
       ) : (
-        <>Xd4</>
+        // redirect to the UploadItem page
+        <LinkContainer to="/upload">
+          <Nav.Link> Click here to list an item </Nav.Link>
+        </LinkContainer>
+        // <>Xd4</>
       )}
     </div>
   );

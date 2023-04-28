@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { useState } from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import App from './App';
 import reportWebVitals from "./reportWebVitals";
 import ItemList from "./Components/ItemList";
@@ -10,6 +13,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import UserProfile from "./Components/UserProfile";
 import DonationList from "./Components/DonationList";
+import Upload from "./Components/UploadItem";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -35,27 +39,41 @@ const router = createBrowserRouter([
             <ItemList items={clothes} />
           </>
         ),
+        element: (
+          <>
+            <Categories />
+            <ItemList items={clothes} />
+          </>
+        ),
       },
       {
         path: "/donation",
+        element: <DonationList donations={donations} />,
         element: <DonationList donations={donations} />,
       },
       {
         path: "/login",
         element: <Login />,
+        element: <Login />,
       },
       {
         path: "/register",
+        element: <Register />,
         element: <Register />,
       },
       {
         path: "/profile",
         element: <UserProfile />,
       },
+      {
+        path: "/upload",
+        element: <Upload />,
+      },
     ],
   },
 ]);
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
