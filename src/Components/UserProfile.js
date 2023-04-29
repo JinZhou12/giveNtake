@@ -26,13 +26,14 @@ function UserProfile() {
         <Nav>
           <div className="sidebar-sticky flex-column">
             <Nav.Item>
-              <Nav.Link
-                onClick={() => {
-                  setPage(0);
-                }}
-              >
-                Personal Information
-              </Nav.Link>
+              <LinkContainer to="/profile/info">
+                {/* <Nav.Link
+                  onClick={() => {
+                    setPage(0);
+                  }}
+                /> */}
+                <Nav.Link>Personal Information</Nav.Link>
+              </LinkContainer>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link

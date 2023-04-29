@@ -1,52 +1,161 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
-import { useOutletContext } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { users } from "../Consts/user";
+import Form from "react-bootstrap/Form";
 import DropBox from "./DropBox";
 import ShowImage from "./ShowImage";
 import "../CSS/UploadItem.css";
-
-// function Image(props) {
-//   const [image, setImage] = React.useState(null);
-
-//   const onImageChange = (event) => {
-//     setImage(event.target.files[0]);
-//   };
-
-//   const onSubmitImage = (event) => {
-//     event.preventDefault();
-//     console.log(image);
-//   };
-
-//   return (
-//     <div className="form-group">
-//       <label htmlFor="image">Image</label>
-//       <input
-//         type="text"
-//         className="form-control"
-//         id="image"
-//         placeholder="Enter image URL"
-//         value={props.value}
-//         onChange={props.onChange}
-//       />
-//     </div>
-//   );
-// }
+import Dropdown from "../CSS/Dropdown.css";
 
 function UploadItem(props) {
-  let navigate = useNavigate();
-
-  const [user, setUser] = useOutletContext();
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [condition, setCondition] = useState("");
-  const [size, setSize] = useState("");
 
   const [images, setImages] = useState([]);
+
+  const GenderDropdown = () => {
+    const [selectValue, setSelectValue] = useState("");
+    const onChange = (event) => {
+      setSelectValue(event.target.value);
+    };
+
+    return (
+      <div>
+        <h4 className="mb-3">Gender</h4>
+        <select onChange={onChange} className="form-select">
+          <option defaultValue disabled>
+            Select Gender
+          </option>
+          <option value="Men">Men</option>
+          <option value="Woman">Woman</option>
+          <option value="Kid">Kid</option>
+        </select>
+        {selectValue && <h2 className="mt-3">{selectValue}</h2>}
+      </div>
+    );
+  };
+
+  const CategoryDropdown = () => {
+    const [selectValue, setSelectValue] = useState("");
+    const onChange = (event) => {
+      setSelectValue(event.target.value);
+    };
+    return (
+      <div>
+        <h4 className="mb-3">Category</h4>
+        <select onChange={onChange} className="form-select">
+          <option defaultValue disabled>
+            Select Category
+          </option>
+          <option value="Clothing"> Clothing</option>
+          <option value="Shoes"> Shoes</option>
+        </select>
+        {selectValue && <h2 className="mt-3">{selectValue}</h2>}
+      </div>
+    );
+  };
+  const SizeCheckBox = () => {
+    const [selectValue, setSelectValue] = useState("");
+    const onChange = (event) => {
+      setSelectValue(event.target.value);
+    };
+
+    return (
+      <Form>
+        <label>
+          <h4 className="mb-3">Size</h4>
+        </label>
+        {["radio"].map((type) => (
+          <div key={`inline-${type}`} className="mb-3">
+            <Form.Check
+              inline
+              label="XS"
+              name="group1"
+              type={type}
+              id={`inline-${type}-1`}
+            />
+            <Form.Check
+              inline
+              label="S"
+              name="group1"
+              type={type}
+              id={`inline-${type}-2`}
+            />
+            <Form.Check inline label="M" type={type} id={`inline-${type}-3`} />
+            <Form.Check inline label="L" type={type} id={`inline-${type}-4`} />
+            <Form.Check inline label="XL" type={type} id={`inline-${type}-5`} />
+          </div>
+        ))}
+      </Form>
+    );
+  };
+
+  const ConditionCheckBox = () => {
+    const [selectValue, setSelectValue] = useState("");
+    const onChange = (event) => {
+      setSelectValue(event.target.value);
+    };
+
+    return (
+      <Form>
+        <label>
+          <h4 className="mb-3">Condition</h4>
+        </label>
+        {["radio"].map((type) => (
+          <div key={`inline-${type}`} className="mb-3">
+            <Form.Check
+              inline
+              label="New"
+              name="group1"
+              type={type}
+              id={`inline-${type}-1`}
+            />
+            <Form.Check
+              inline
+              label="Like New"
+              name="group1"
+              type={type}
+              id={`inline-${type}-2`}
+            />
+            <Form.Check
+              inline
+              label="Good"
+              type={type}
+              id={`inline-${type}-3`}
+            />
+            <Form.Check
+              inline
+              label="Fair"
+              type={type}
+              id={`inline-${type}-4`}
+            />
+            <Form.Check
+              inline
+              label="Poor"
+              type={type}
+              id={`inline-${type}-5`}
+            />
+          </div>
+        ))}
+      </Form>
+    );
+  };
+
+  const Description = () => {
+    const [selectValue, setSelectValue] = useState("");
+    const onChange = (event) => {
+      setSelectValue(event.target.value);
+    };
+    return (
+      <Form>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label>
+            <h4 className="mb-3">Description</h4>
+          </Form.Label>
+          <Form.Control as="textarea" rows={3} />
+        </Form.Group>
+      </Form>
+    );
+  };
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file, index) => {
@@ -61,10 +170,6 @@ function UploadItem(props) {
 
   const onTitleChange = (event) => {
     setTitle(event.target.value);
-  };
-
-  const onCategoryChange = (event) => {
-    setCategory(event.target.value);
   };
 
   const onPriceChange = (event) => {
@@ -102,9 +207,10 @@ function UploadItem(props) {
             <legend className="f1 fw6 ph0 mh0">Upload Item</legend>
             <DropBox onDrop={onDrop} />
             <ShowImage images={images} />
+
             <div className="mt3">
               <label className="db fw6 lh-copy f6" htmlFor="item-title">
-                Title
+                <h4 className="mb-3">Title</h4>
               </label>
               <input
                 className="pa2 input-reset ba bg-transparent hover-bg-black w-100"
@@ -114,28 +220,37 @@ function UploadItem(props) {
                 onChange={onTitleChange}
               />
             </div>
-            <div className="mv3">
-              <label className="db fw6 lh-copy f6" htmlFor="description">
-                Description
-              </label>
-              <input
-                className="b pa2 input-reset ba bg-transparent hover-bg-black w-100"
-                type="description"
-                name="description"
-                id="description"
-                onChange={onDescriptionChange}
-              />
+
+            <div className="mt3">
+              <Description />
             </div>
+
+            <div className="container mt3">
+              <GenderDropdown />
+            </div>
+
+            <div className="container mt3">
+              <CategoryDropdown />
+            </div>
+
+            <div className="container mt3">
+              <SizeCheckBox />
+            </div>
+
+            <div className="container mt3">
+              <ConditionCheckBox />
+            </div>
+
             <div className="mv3">
               <label className="db fw6 lh-copy f6" htmlFor="category">
-                Category
+                Price
               </label>
               <input
                 className="b pa2 input-reset ba bg-transparent hover-bg-black w-100"
-                type="category"
-                name="category"
-                id="catrgory"
-                onChange={onCategoryChange}
+                type="price"
+                name="price"
+                id="price"
+                onChange={onPriceChange}
               />
             </div>
           </fieldset>
