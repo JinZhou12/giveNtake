@@ -247,19 +247,19 @@ function UploadItem(props) {
               <Description />
             </div>
 
-            <div className="container mt3">
+            <div className="mt3">
               <GenderDropdown />
             </div>
 
-            <div className="container mt3">
+            <div className="mt3">
               <CategoryDropdown />
             </div>
 
-            <div className="container mt3">
+            <div className="mt3">
               <SizeCheckBox />
             </div>
 
-            <div className="container mt3">
+            <div className="mt3">
               <ConditionCheckBox />
             </div>
 
