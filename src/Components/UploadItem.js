@@ -3,19 +3,24 @@ import Form from "react-bootstrap/Form";
 import DropBox from "./DropBox";
 import ShowImage from "./ShowImage";
 import "../CSS/UploadItem.css";
+import { useOutletContext } from "react-router-dom";
 import Dropdown from "../CSS/Dropdown.css";
 
 function UploadItem(props) {
+  const [user, setUser] = useOutletContext();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [gender, setGender] = useState("");
+  const [category, setCategory] = useState("");
+  const [size, setSize] = useState("");
+  const [condition, setCondition] = useState("");
 
   const [images, setImages] = useState([]);
 
   const GenderDropdown = () => {
-    const [selectValue, setSelectValue] = useState("");
     const onChange = (event) => {
-      setSelectValue(event.target.value);
+      setGender(event.target.value);
     };
 
     return (
@@ -29,15 +34,14 @@ function UploadItem(props) {
           <option value="Woman">Woman</option>
           <option value="Kid">Kid</option>
         </select>
-        {selectValue && <h2 className="mt-3">{selectValue}</h2>}
+        {/* {gender} */}
       </div>
     );
   };
 
   const CategoryDropdown = () => {
-    const [selectValue, setSelectValue] = useState("");
     const onChange = (event) => {
-      setSelectValue(event.target.value);
+      setCategory(event.target.value);
     };
     return (
       <div>
@@ -49,15 +53,14 @@ function UploadItem(props) {
           <option value="Clothing"> Clothing</option>
           <option value="Shoes"> Shoes</option>
         </select>
-        {selectValue && <h2 className="mt-3">{selectValue}</h2>}
+        {/* {category} */}
       </div>
     );
   };
 
   const SizeCheckBox = () => {
-    const [selectValue, setSelectValue] = useState("");
     const onChange = (event) => {
-      setSelectValue(event.target.value);
+      setSize(event.target.value);
     };
 
     return (
@@ -109,9 +112,8 @@ function UploadItem(props) {
   };
 
   const ConditionCheckBox = () => {
-    const [selectValue, setSelectValue] = useState("");
     const onChange = (event) => {
-      setSelectValue(event.target.value);
+      setCondition(event.target.value);
     };
 
     return (
@@ -163,9 +165,8 @@ function UploadItem(props) {
   };
 
   const Description = () => {
-    const [selectValue, setSelectValue] = useState("");
     const onChange = (event) => {
-      setSelectValue(event.target.value);
+      setDescription(event.target.value);
     };
     return (
       <Form>
@@ -204,21 +205,28 @@ function UploadItem(props) {
 
   const onSubmitItem = (event) => {
     event.preventDefault();
-    // fetch('https://shrouded-plains-66034.herokuapp.com/signin', {
-    //     method: 'post',
-    //     headers: {'Content-Type': 'application/json'},
-    //     body: JSON.stringify({
-    //         email: this.state.signInEmail,
-    //         password: this.state.signInPassword
-    //     })
-    // })
-    //     .then(response => response.json())
-    //     .then(user => {
-    //         if(user.user_id){
-    //             this.props.loadUser(user);
-    //             this.props.onRouteChange('home');
-    //         }
-    //     })
+    fetch("http://localhost:4000/list_items", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: user.email,
+        title: title,
+        price: price,
+        photo: images[0].src,
+        gender: gender,
+        category: category,
+        size: size,
+        condition: condition,
+        description: description,
+      }),
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        if (user.user_id) {
+          this.props.loadUser(user);
+          this.props.onRouteChange("home");
+        }
+      });
   };
 
   return (
