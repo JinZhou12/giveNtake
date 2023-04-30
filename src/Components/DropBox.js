@@ -24,7 +24,7 @@ function DropBox({ onDrop }) {
   return (
     <>
       {" "}
-      <section className="dropbox">
+      <section className="dropbox ph0">
         <Container
           className="dropbox flex-column justify-center"
           {...getRootProps({ isDragAccept, isFocused, isDragReject })}
