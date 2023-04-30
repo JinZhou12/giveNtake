@@ -53,6 +53,7 @@ function UploadItem(props) {
       </div>
     );
   };
+
   const SizeCheckBox = () => {
     const [selectValue, setSelectValue] = useState("");
     const onChange = (event) => {
@@ -80,9 +81,27 @@ function UploadItem(props) {
               type={type}
               id={`inline-${type}-2`}
             />
-            <Form.Check inline label="M" type={type} id={`inline-${type}-3`} />
-            <Form.Check inline label="L" type={type} id={`inline-${type}-4`} />
-            <Form.Check inline label="XL" type={type} id={`inline-${type}-5`} />
+            <Form.Check
+              inline
+              label="M"
+              name="group1"
+              type={type}
+              id={`inline-${type}-3`}
+            />
+            <Form.Check
+              inline
+              label="L"
+              name="group1"
+              type={type}
+              id={`inline-${type}-4`}
+            />
+            <Form.Check
+              inline
+              label="XL"
+              name="group1"
+              type={type}
+              id={`inline-${type}-5`}
+            />
           </div>
         ))}
       </Form>
@@ -119,18 +138,21 @@ function UploadItem(props) {
             <Form.Check
               inline
               label="Good"
+              name="group1"
               type={type}
               id={`inline-${type}-3`}
             />
             <Form.Check
               inline
               label="Fair"
+              name="group1"
               type={type}
               id={`inline-${type}-4`}
             />
             <Form.Check
               inline
               label="Poor"
+              name="group1"
               type={type}
               id={`inline-${type}-5`}
             />
