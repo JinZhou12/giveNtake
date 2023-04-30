@@ -21,7 +21,7 @@ function UserProfile() {
         <Nav>
           <div className="sidebar-sticky flex-column">
             <Nav.Item>
-              <LinkContainer to="/profile/info">
+              <LinkContainer to="/profile">
                 <Nav.Link>Personal Information</Nav.Link>
               </LinkContainer>
             </Nav.Item>

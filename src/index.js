@@ -55,7 +55,7 @@ const router = createBrowserRouter([
             element: <UploadItem />,
           },
           {
-            path: "/profile/info",
+            path: "/profile",
             element: <PersonalInfo />,
           },
         ],
