@@ -12,7 +12,6 @@ import UserProfile from "./Components/UserProfile";
 import DonationList from "./Components/DonationList";
 import UploadItem from "./Components/UploadItem";
 import PersonalInfo from "./Components/PersonalInfo";
-import Info from "./Components/Info";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -54,6 +53,10 @@ const router = createBrowserRouter([
           {
             path: "/profile/upload",
             element: <UploadItem />,
+          },
+          {
+            path: "/profile/info",
+            element: <PersonalInfo />,
           },
         ],
       },
