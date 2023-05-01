@@ -9,8 +9,6 @@ import "../CSS/Dashboard.css";
 
 function UserProfile() {
   const [user, setUser] = useOutletContext();
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("johndoe@example.com");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("123 Main St, Anytown USA");
   const [page, setPage] = useState(0);
