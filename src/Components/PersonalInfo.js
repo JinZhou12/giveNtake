@@ -8,7 +8,7 @@ import "../CSS/UploadItem.css";
 
 function PersonalInfo() {
   const [user, setUser] = useOutletContext();
-  const [address, setAddress] = useState("123 Main St, Anytown USA");
+  // const [address, setAddress] = useState("123 Main St, Anytown USA");
   const [credit, setCredit] = useState("10");
 
   return (
@@ -31,14 +31,14 @@ function PersonalInfo() {
         </Col>
       </Form.Group>
 
-      <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+      {/* <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
         <Form.Label column sm="3">
           Address
         </Form.Label>
         <Col sm="10">
           <Form.Control plaintext readOnly defaultValue={address} />
         </Col>
-      </Form.Group>
+      </Form.Group> */}
 
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
         <Form.Label column sm="3">
@@ -48,11 +48,6 @@ function PersonalInfo() {
           <Form.Control plaintext readOnly defaultValue={credit} />
         </Col>
       </Form.Group>
-
-      {/* <Form.Group calssName="mb-3">
-        <Form.Label>Email</Form.Label>
-        <Form.Control placeholder="setEmail" disabled/>
-      </Form.Group> */}
     </Form>
   );
 }

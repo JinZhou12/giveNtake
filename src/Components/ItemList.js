@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import domtoimage from "dom-to-image";
 import PageButton from "./PageButton";
-import ToggleButton from "react-bootstrap/ToggleButton";
+import { useNavigate } from "react-router-dom";
 import "../CSS/ItemList.css";
-import { Button } from "react-bootstrap";
 
 const Item = (props) => {
+  let navigate = useNavigate();
   let photo = JSON.parse(props.item.photo).src;
+  const onDetialClick = () => {
+    // navigate("/item_detail", { state: { item: props.item } });
+    navigate(`/item_detail/${props.item.item_id}`);
+  };
+
   return (
-    <div className="item flex-column">
+    <div className="item flex-column" onClick={onDetialClick}>
       <img
         className="itemimg"
         src={photo}
@@ -23,16 +27,12 @@ const Item = (props) => {
         <div className="flex items-center justify-center">
           ${props.item.price}
         </div>
-        {/* <div>
-          <Button variant="detail">Detail</Button>
-        </div> */}
       </div>
     </div>
   );
 };
 
 const ItemList = (props) => {
-  const items = props.items;
   const itemPerPage = 30;
   const [page, setPage] = useState(1);
   const [items, setItems] = useState("");

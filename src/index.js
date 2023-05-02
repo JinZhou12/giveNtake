@@ -12,7 +12,7 @@ import UserProfile from "./Components/UserProfile";
 import DonationList from "./Components/DonationList";
 import UploadItem from "./Components/UploadItem";
 import PersonalInfo from "./Components/PersonalInfo";
-import itemDetail from "./Components/itemDetail";
+import ItemDetail from "./Components/ItemDetail";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -62,8 +62,8 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/itemDetail",
-        element: <itemDetail />,
+        path: "/item_detail/:itemId",
+        element: <ItemDetail />,
       },
     ],
   },

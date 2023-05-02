@@ -215,8 +215,8 @@ function UploadItem(props) {
 
   const onSubmitItem = (event) => {
     event.preventDefault();
-    console.log(size);
-    console.log(condition);
+    // console.log(size);
+    // console.log(condition);
     if (!images.length) {
       alert("Please upload an image");
       return;
