@@ -6,21 +6,33 @@ import Row from "react-bootstrap/Row";
 import IconButton from "@mui/material/IconButton";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "../CSS/UploadItem.css";
-import { useParams } from "react-router-dom";
+import { useOutlet, useOutletContext, useParams } from "react-router-dom";
 
 function ItemDetail() {
+  const [user, setUser] = useOutletContext();
   const { itemId } = useParams();
   const [item, setItem] = useState("");
 
   const onCartClick = () => {
-    console.log("add to cart");
-    // use the item id get from previous step
-    // pass the item id to the backend
-    // backend will add the item to the shopping cart
-    // backend will return the updated shopping cart
-    // frontend will update the shopping cart
-    alert("added to cart");
+    fetch("http://localhost:4000/cart", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_email: user.email,
+        item_id: item.item_id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.err) {
+          alert("Error:${data.message}");
+        } else {
+          alert(data.message);
+        }
+      });
   };
+  // console.log(user);
+
   useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -54,8 +66,6 @@ function ItemDetail() {
   if (!item) {
     return <div>Loading...</div>;
   }
-
-  
 
   return (
     <div class="row">
