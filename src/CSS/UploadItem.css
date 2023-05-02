@@ -28,7 +28,7 @@
   border: 1px dashed rgb(187, 187, 187);
 }
 
-.btnDrop {
+.drop {
   background-color: rgb(199, 0, 0) !important;
   color: white !important;
   width: 35%;

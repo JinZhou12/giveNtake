@@ -32,7 +32,7 @@ function DropBox({ onDrop }) {
           <input {...getInputProps()} />
           <p className="b mb2">Drag 'n' drop some files here</p>
           <div className="h2">
-            <button type="button" className="btnDrop" onClick={open}>
+            <button type="button" className="btn drop" onClick={open}>
               Click to select file
             </button>
           </div>

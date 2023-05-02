@@ -15,6 +15,8 @@ function UserProfile() {
   const [address, setAddress] = useState("123 Main St, Anytown USA");
   const [page, setPage] = useState(0);
 
+  console.log(user);
+
   return (
     <div className="profile-page flex">
       <div className="fl w-25">
@@ -45,6 +47,15 @@ function UserProfile() {
                 <Nav.Link> Listing </Nav.Link>
               </LinkContainer>
             </Nav.Item>
+            {user.charity ? (
+              <Nav.Item>
+                <LinkContainer to="/profile/upload">
+                  <Nav.Link> Start Donation </Nav.Link>
+                </LinkContainer>
+              </Nav.Item>
+            ) : (
+              <></>
+            )}
             <Nav.Item>
               <Nav.Link
                 className="red mt2"
