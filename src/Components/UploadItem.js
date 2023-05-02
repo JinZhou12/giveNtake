@@ -228,7 +228,7 @@ function UploadItem(props) {
         user: user.email,
         title: title,
         price: price,
-        photo: images[0].src,
+        photo: images[0],
         gender: gender,
         category: category,
         size: size,

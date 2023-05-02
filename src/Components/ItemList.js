@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import domtoimage from "dom-to-image";
 import PageButton from "./PageButton";
 import "../CSS/ItemList.css";
 
 const Item = (props) => {
+  let photo = JSON.parse(props.item.photo).src;
   return (
     <div className="item flex-column">
       <img
         className="itemimg"
-        src={props.item.image}
+        src={photo}
         alt={"nothing"}
         width="100%"
         height="200"
       />
       <div className="">
         <div className="flex items-center justify-center mt2 b">
-          {props.item.name}
+          {props.item.title}
         </div>
         <div className="flex items-center justify-center">
           ${props.item.price}
@@ -24,12 +26,24 @@ const Item = (props) => {
   );
 };
 
-const ItemList = (props) => {
-  const items = props.items;
+function ItemList(props) {
   const itemPerPage = 30;
   const [page, setPage] = useState(1);
+  const [items, setItems] = useState("");
   const numPages = Math.ceil(Object.keys(items).length / itemPerPage);
   const pages = Array.from(Array(numPages).keys());
+
+  useEffect(() => {
+    fetch("http://localhost:4000/display_items", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ category: "" }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setItems(data);
+      });
+  }, []);
 
   return (
     <div className="flex-column">
@@ -70,6 +84,6 @@ const ItemList = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default ItemList;
