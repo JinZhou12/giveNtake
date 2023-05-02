@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import PageButton from "./PageButton";
-import { useNavigate } from "react-router-dom";
 import "../CSS/ItemList.css";
 
 const Item = (props) => {
   let navigate = useNavigate();
   let photo = JSON.parse(props.item.photo).src;
-  const onDetialClick = () => {
+  const onDetailClick = () => {
     // navigate("/item_detail", { state: { item: props.item } });
     navigate(`/item_detail/${props.item.item_id}`);
   };
 
   return (
-    <div className="item flex-column" onClick={onDetialClick}>
+    <div className="item flex-column" onClick={onDetailClick}>
       <img
         className="itemimg"
         src={photo}
@@ -26,7 +25,7 @@ const Item = (props) => {
           {props.item.title}
         </div>
         <div className="flex items-center justify-center">
-          ${props.item.price}
+          {props.item.price}
         </div>
       </div>
     </div>
@@ -34,7 +33,7 @@ const Item = (props) => {
 };
 
 const ItemList = (props) => {
-  const itemPerPage = 30;
+  const itemPerPage = 20;
   const [user, setUser, category, setCategory, gender, setGender] =
     useOutletContext();
   const [page, setPage] = useState(1);
@@ -49,6 +48,7 @@ const ItemList = (props) => {
       body: JSON.stringify({
         gender: gender,
         category: category,
+        user: "",
       }),
     })
       .then((response) => response.json())
