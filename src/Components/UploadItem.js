@@ -172,8 +172,6 @@ function UploadItem(props) {
   const [size, setSize] = useState("");
   const [condition, setCondition] = useState("");
 
-  const [images, setImages] = useState([]);
-
   const onTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -202,6 +200,8 @@ function UploadItem(props) {
     setCondition(event.target.labels[0].innerText);
   };
 
+  const [images, setImages] = useState([]);
+
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file, index) => {
       const reader = new FileReader();
@@ -228,7 +228,7 @@ function UploadItem(props) {
         user: user.email,
         title: title,
         price: price,
-        photo: images[0].src,
+        photo: images[0],
         gender: gender,
         category: category,
         size: size,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageButton from "./PageButton";
 import "../CSS/ItemList.css";
 
@@ -24,7 +24,7 @@ const Item = (props) => {
   );
 };
 
-const ItemList = (props) => {
+function ItemList(props) {
   const items = props.items;
   const itemPerPage = 30;
   const [page, setPage] = useState(1);
@@ -70,6 +70,6 @@ const ItemList = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default ItemList;
