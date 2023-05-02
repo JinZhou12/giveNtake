@@ -27,8 +27,9 @@ const Item = (props) => {
 };
 
 function ItemList(props) {
-  const [gender, category] = useOutletContext();
   const itemPerPage = 30;
+  const [user, setUser, category, setCategory, gender, setGender] =
+    useOutletContext();
   const [page, setPage] = useState(1);
   const [items, setItems] = useState("");
   const numPages = Math.ceil(Object.keys(items).length / itemPerPage);

@@ -12,7 +12,7 @@ function PersonalInfo() {
   return (
     <Form>
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextName">
-        <Form.Label column sm="5">
+        <Form.Label column sm="5" className="b">
           Username
         </Form.Label>
         <Col sm="10">
@@ -21,7 +21,7 @@ function PersonalInfo() {
       </Form.Group>
 
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-        <Form.Label column sm="3">
+        <Form.Label column sm="3" className="b">
           Email
         </Form.Label>
         <Col sm="10">
@@ -30,7 +30,7 @@ function PersonalInfo() {
       </Form.Group>
 
       <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-        <Form.Label column sm="3">
+        <Form.Label column sm="3" className="b">
           Credit
         </Form.Label>
         <Col sm="10">

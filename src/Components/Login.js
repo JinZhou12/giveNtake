@@ -35,7 +35,7 @@ function SignIn(props) {
           alert(res.err);
         } else {
           setUser(res);
-          navigate("/");
+          navigate("/profile");
         }
       });
   };

@@ -8,6 +8,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import "../CSS/Dashboard.css";
 
 function UserProfile() {
+  let navigate = useNavigate();
+
   const [user, setUser] = useOutletContext();
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("123 Main St, Anytown USA");
@@ -24,6 +26,11 @@ function UserProfile() {
               </LinkContainer>
             </Nav.Item>
             <Nav.Item>
+              <LinkContainer to="/profile/address">
+                <Nav.Link>Address</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
               <LinkContainer to="/profile/cart">
                 <Nav.Link>Shopping Cart</Nav.Link>
               </LinkContainer>
@@ -37,6 +44,17 @@ function UserProfile() {
               <LinkContainer to="/profile/upload">
                 <Nav.Link> Listing </Nav.Link>
               </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                className="red mt2"
+                onClick={() => {
+                  setUser("");
+                  navigate("/");
+                }}
+              >
+                Logout
+              </Nav.Link>
             </Nav.Item>
           </div>
         </Nav>

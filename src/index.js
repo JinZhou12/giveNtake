@@ -12,6 +12,7 @@ import UserProfile from "./Components/UserProfile";
 import DonationList from "./Components/DonationList";
 import UploadItem from "./Components/UploadItem";
 import PersonalInfo from "./Components/PersonalInfo";
+import Address from "./Components/Address";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -51,12 +52,16 @@ const router = createBrowserRouter([
         element: <UserProfile />,
         children: [
           {
+            path: "/profile",
+            element: <PersonalInfo />,
+          },
+          {
             path: "/profile/upload",
             element: <UploadItem />,
           },
           {
-            path: "/profile",
-            element: <PersonalInfo />,
+            path: "/profile/address",
+            element: <Address />,
           },
         ],
       },

@@ -37,7 +37,7 @@ function Register(props) {
           alert(res.err[0].message);
         } else {
           setUser(res);
-          navigate("/");
+          navigate("/profile");
         }
       })
       .catch((err) => console.log(err));

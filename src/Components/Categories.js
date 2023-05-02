@@ -7,7 +7,8 @@ import { useOutletContext } from "react-router-dom";
 import "../CSS/Categories.css";
 
 function Categories() {
-  const [gender, setGender, category, setCategory] = useOutletContext();
+  const [user, setUser, category, setCategory, gender, setGender] =
+    useOutletContext();
 
   return (
     <div className="categories">

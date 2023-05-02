@@ -16,7 +16,7 @@ const GenderDropdown = (props) => {
           Select Gender
         </option>
         <option value="Men">Men</option>
-        <option value="Woman">Woman</option>
+        <option value="Woman">Women</option>
         <option value="Kid">Kid</option>
       </select>
     </div>
@@ -222,7 +222,7 @@ function UploadItem(props) {
       return;
     }
     fetch("http://localhost:4000/list_items", {
-      method: "post",
+      method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         user: user.email,

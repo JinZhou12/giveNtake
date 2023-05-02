@@ -14,11 +14,25 @@ const Navigation = (props) => {
     <>
       <Navbar className="mb3" bg="dark" variant="dark" sticky="top">
         <LinkContainer to="/">
-          <Navbar.Brand> Give&Take </Navbar.Brand>
+          <Navbar.Brand
+            onClick={() => {
+              setCategory("");
+              setGender("");
+            }}
+          >
+            Give&Take
+          </Navbar.Brand>
         </LinkContainer>
         <Nav className="ms-auto">
           <LinkContainer to="/">
-            <Nav.Link> Personal </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                setCategory("");
+                setGender("");
+              }}
+            >
+              Personal
+            </Nav.Link>
           </LinkContainer>
           <LinkContainer to="/donation">
             <Nav.Link> Donation </Nav.Link>
