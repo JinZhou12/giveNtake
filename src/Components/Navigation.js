@@ -7,6 +7,8 @@ import "../CSS/Navigation.css";
 
 const Navigation = (props) => {
   const [user, setUser] = useState("");
+  const [category, setCategory] = useState("");
+  const [gender, setGender] = useState("");
 
   return (
     <>
@@ -37,7 +39,9 @@ const Navigation = (props) => {
           )}
         </Nav>
       </Navbar>
-      <Outlet context={[user, setUser]} />
+      <Outlet
+        context={[user, setUser, category, setCategory, gender, setGender]}
+      />
     </>
   );
 };

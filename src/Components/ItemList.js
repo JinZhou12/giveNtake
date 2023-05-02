@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import domtoimage from "dom-to-image";
+import { useOutletContext } from "react-router-dom";
 import PageButton from "./PageButton";
 import "../CSS/ItemList.css";
 
@@ -27,6 +27,7 @@ const Item = (props) => {
 };
 
 function ItemList(props) {
+  const [gender, category] = useOutletContext();
   const itemPerPage = 30;
   const [page, setPage] = useState(1);
   const [items, setItems] = useState("");
@@ -37,13 +38,16 @@ function ItemList(props) {
     fetch("http://localhost:4000/display_items", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ category: "" }),
+      body: JSON.stringify({
+        gender: gender,
+        category: category,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
         setItems(data);
       });
-  }, []);
+  }, [gender, category]);
 
   return (
     <div className="flex-column">
