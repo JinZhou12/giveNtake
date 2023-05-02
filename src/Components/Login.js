@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,8 +8,8 @@ function SignIn(props) {
   let navigate = useNavigate();
 
   const [user, setUser] = useOutletContext();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onEmailChange = (event) => {
     setEmail(event.target.value);

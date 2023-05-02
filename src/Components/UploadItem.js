@@ -2,183 +2,205 @@ import React, { useEffect, useState, useCallback } from "react";
 import Form from "react-bootstrap/Form";
 import DropBox from "./DropBox";
 import ShowImage from "./ShowImage";
-import "../CSS/UploadItem.css";
+import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import Dropdown from "../CSS/Dropdown.css";
+import "../CSS/UploadItem.css";
+
+const GenderDropdown = (props) => {
+  return (
+    <div>
+      <h4 className="mb-3">Gender</h4>
+      <select onChange={props.onChange} className="form-select">
+        <option defaultValue disabled>
+          Select Gender
+        </option>
+        <option value="Men">Men</option>
+        <option value="Woman">Woman</option>
+        <option value="Kid">Kid</option>
+      </select>
+    </div>
+  );
+};
+
+const CategoryDropdown = (props) => {
+  return (
+    <div>
+      <h4 className="mb-3">Category</h4>
+      <select onChange={props.onChange} className="form-select">
+        <option defaultValue disabled>
+          Select Category
+        </option>
+        <option value="Clothing"> Clothing</option>
+        <option value="Shoes"> Shoes</option>
+      </select>
+      {/* {category} */}
+    </div>
+  );
+};
+
+const SizeCheckBox = (props) => {
+  return (
+    <Form>
+      <label>
+        <h4 className="mb-3">Size</h4>
+      </label>
+      {["radio"].map((type) => (
+        <div key={`inline-${type}`} className="mb-3">
+          <Form.Check
+            inline
+            label="XS"
+            name="group1"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-1`}
+          />
+          <Form.Check
+            inline
+            label="S"
+            name="group1"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-2`}
+          />
+          <Form.Check
+            inline
+            label="M"
+            name="group1"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-3`}
+          />
+          <Form.Check
+            inline
+            label="L"
+            name="group1"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-4`}
+          />
+          <Form.Check
+            inline
+            label="XL"
+            name="group1"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-5`}
+          />
+        </div>
+      ))}
+    </Form>
+  );
+};
+
+const ConditionCheckBox = (props) => {
+  return (
+    <Form>
+      <label>
+        <h4 className="mb-3">Condition</h4>
+      </label>
+      {["radio"].map((type) => (
+        <div key={`inline-${type}`} className="mb-3">
+          <Form.Check
+            inline
+            label="New"
+            name="group2"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-6`}
+          />
+          <Form.Check
+            inline
+            label="Like New"
+            name="group2"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-7`}
+          />
+          <Form.Check
+            inline
+            label="Good"
+            name="group2"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-8`}
+          />
+          <Form.Check
+            inline
+            label="Fair"
+            name="group2"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-9`}
+          />
+          <Form.Check
+            inline
+            label="Poor"
+            name="group2"
+            type={type}
+            onClick={props.onChange}
+            id={`inline-${type}-10`}
+          />
+        </div>
+      ))}
+    </Form>
+  );
+};
+
+const Description = (props) => {
+  return (
+    <Form>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>
+          <h4 className="mb-3">Description</h4>
+        </Form.Label>
+        <Form.Control onChange={props.onChange} as="textarea" rows={3} />
+      </Form.Group>
+    </Form>
+  );
+};
 
 function UploadItem(props) {
+  let navigate = useNavigate();
+
   const [user, setUser] = useOutletContext();
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
+  const [gender, setGender] = useState("Men");
+  const [category, setCategory] = useState("Clothing");
   const [description, setDescription] = useState("");
-  const [gender, setGender] = useState("");
-  const [category, setCategory] = useState("");
   const [size, setSize] = useState("");
   const [condition, setCondition] = useState("");
 
+  const onTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const onPriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const onGenderChange = (event) => {
+    setGender(event.target.value);
+  };
+
+  const onCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const onDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const onSizeChange = (event) => {
+    setSize(event.target.labels[0].innerText);
+  };
+
+  const onConditionChange = (event) => {
+    setCondition(event.target.labels[0].innerText);
+  };
+
   const [images, setImages] = useState([]);
-
-  const GenderDropdown = () => {
-    const onChange = (event) => {
-      setGender(event.target.value);
-    };
-
-    return (
-      <div>
-        <h4 className="mb-3">Gender</h4>
-        <select onChange={onChange} className="form-select">
-          <option defaultValue disabled>
-            Select Gender
-          </option>
-          <option value="Men">Men</option>
-          <option value="Woman">Woman</option>
-          <option value="Kid">Kid</option>
-        </select>
-        {/* {gender} */}
-      </div>
-    );
-  };
-
-  const CategoryDropdown = () => {
-    const onChange = (event) => {
-      setCategory(event.target.value);
-    };
-    return (
-      <div>
-        <h4 className="mb-3">Category</h4>
-        <select onChange={onChange} className="form-select">
-          <option defaultValue disabled>
-            Select Category
-          </option>
-          <option value="Clothing"> Clothing</option>
-          <option value="Shoes"> Shoes</option>
-        </select>
-        {/* {category} */}
-      </div>
-    );
-  };
-
-  const SizeCheckBox = () => {
-    const onChange = (event) => {
-      setSize(event.target.value);
-    };
-
-    return (
-      <Form>
-        <label>
-          <h4 className="mb-3">Size</h4>
-        </label>
-        {["radio"].map((type) => (
-          <div key={`inline-${type}`} className="mb-3">
-            <Form.Check
-              inline
-              label="XS"
-              name="group1"
-              type={type}
-              id={`inline-${type}-1`}
-            />
-            <Form.Check
-              inline
-              label="S"
-              name="group1"
-              type={type}
-              id={`inline-${type}-2`}
-            />
-            <Form.Check
-              inline
-              label="M"
-              name="group1"
-              type={type}
-              id={`inline-${type}-3`}
-            />
-            <Form.Check
-              inline
-              label="L"
-              name="group1"
-              type={type}
-              id={`inline-${type}-4`}
-            />
-            <Form.Check
-              inline
-              label="XL"
-              name="group1"
-              type={type}
-              id={`inline-${type}-5`}
-            />
-          </div>
-        ))}
-      </Form>
-    );
-  };
-
-  const ConditionCheckBox = () => {
-    const onChange = (event) => {
-      setCondition(event.target.value);
-    };
-
-    return (
-      <Form>
-        <label>
-          <h4 className="mb-3">Condition</h4>
-        </label>
-        {["radio"].map((type) => (
-          <div key={`inline-${type}`} className="mb-3">
-            <Form.Check
-              inline
-              label="New"
-              name="group1"
-              type={type}
-              id={`inline-${type}-1`}
-            />
-            <Form.Check
-              inline
-              label="Like New"
-              name="group1"
-              type={type}
-              id={`inline-${type}-2`}
-            />
-            <Form.Check
-              inline
-              label="Good"
-              name="group1"
-              type={type}
-              id={`inline-${type}-3`}
-            />
-            <Form.Check
-              inline
-              label="Fair"
-              name="group1"
-              type={type}
-              id={`inline-${type}-4`}
-            />
-            <Form.Check
-              inline
-              label="Poor"
-              name="group1"
-              type={type}
-              id={`inline-${type}-5`}
-            />
-          </div>
-        ))}
-      </Form>
-    );
-  };
-
-  const Description = () => {
-    const onChange = (event) => {
-      setDescription(event.target.value);
-    };
-    return (
-      <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>
-            <h4 className="mb-3">Description</h4>
-          </Form.Label>
-          <Form.Control as="textarea" rows={3} />
-        </Form.Group>
-      </Form>
-    );
-  };
 
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file, index) => {
@@ -191,20 +213,14 @@ function UploadItem(props) {
     });
   }, []);
 
-  const onTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const onPriceChange = (event) => {
-    setPrice(event.target.value);
-  };
-
-  const onDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
-
   const onSubmitItem = (event) => {
     event.preventDefault();
+    console.log(size);
+    console.log(condition);
+    if (!images.length) {
+      alert("Please upload an image");
+      return;
+    }
     fetch("http://localhost:4000/list_items", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -212,7 +228,7 @@ function UploadItem(props) {
         user: user.email,
         title: title,
         price: price,
-        photo: images[0].src,
+        photo: images[0],
         gender: gender,
         category: category,
         size: size,
@@ -221,10 +237,12 @@ function UploadItem(props) {
       }),
     })
       .then((response) => response.json())
-      .then((user) => {
-        if (user.user_id) {
-          this.props.loadUser(user);
-          this.props.onRouteChange("home");
+      .then((data) => {
+        if (data.err) {
+          alert(data.err);
+        } else {
+          console.log("success");
+          navigate("/profile");
         }
       });
   };
@@ -252,23 +270,23 @@ function UploadItem(props) {
             </div>
 
             <div className="mt3">
-              <Description />
+              <Description onChange={onDescriptionChange} />
             </div>
 
             <div className="mt3">
-              <GenderDropdown />
+              <GenderDropdown onChange={onGenderChange} />
             </div>
 
             <div className="mt3">
-              <CategoryDropdown />
+              <CategoryDropdown onChange={onCategoryChange} />
             </div>
 
             <div className="mt3">
-              <SizeCheckBox />
+              <SizeCheckBox onChange={onSizeChange} />
             </div>
 
             <div className="mt3">
-              <ConditionCheckBox />
+              <ConditionCheckBox onChange={onConditionChange} />
             </div>
 
             <div className="mv3">
@@ -276,8 +294,8 @@ function UploadItem(props) {
                 Price
               </label>
               <input
-                className="b pa2 input-reset ba bg-transparent hover-bg-black w-100"
-                type="price"
+                className="pa2 input-reset ba bg-transparent hover-bg-black w-100"
+                type="number"
                 name="price"
                 id="price"
                 onChange={onPriceChange}
