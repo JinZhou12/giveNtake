@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PageButton from "./PageButton";
+import ToggleButton from "react-bootstrap/ToggleButton";
 import "../CSS/ItemList.css";
+import { Button } from "react-bootstrap";
 
 const Item = (props) => {
   return (
@@ -19,6 +21,9 @@ const Item = (props) => {
         <div className="flex items-center justify-center">
           ${props.item.price}
         </div>
+        {/* <div>
+          <Button variant="detail">Detail</Button>
+        </div> */}
       </div>
     </div>
   );
