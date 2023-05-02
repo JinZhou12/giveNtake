@@ -11,10 +11,16 @@ import { useParams } from "react-router-dom";
 function ItemDetail() {
   const { itemId } = useParams();
   const [item, setItem] = useState("");
-  const onCartClick = () => {
-    console.log("cart clicked");
-  };
 
+  const onCartClick = () => {
+    console.log("add to cart");
+    // use the item id get from previous step
+    // pass the item id to the backend
+    // backend will add the item to the shopping cart
+    // backend will return the updated shopping cart
+    // frontend will update the shopping cart
+    alert("added to cart");
+  };
   useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -48,6 +54,8 @@ function ItemDetail() {
   if (!item) {
     return <div>Loading...</div>;
   }
+
+  
 
   return (
     <div class="row">
@@ -110,7 +118,7 @@ function ItemDetail() {
           Add to shopping cart
         </Form.Label>
         <IconButton color="primary" aria-label="add to shopping cart">
-          <AddShoppingCartIcon onCartClick={onCartClick} />
+          <AddShoppingCartIcon onClick={onCartClick} />
         </IconButton>
       </Form>
     </div>

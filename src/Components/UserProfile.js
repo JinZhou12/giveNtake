@@ -11,7 +11,6 @@ function UserProfile() {
   const [user, setUser] = useOutletContext();
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("123 Main St, Anytown USA");
-  const [page, setPage] = useState(0);
 
   return (
     <div className="profile-page flex">
@@ -24,7 +23,7 @@ function UserProfile() {
               </LinkContainer>
             </Nav.Item>
             <Nav.Item>
-              <LinkContainer to="/profile/cart">
+              <LinkContainer to="/profile/shopping_cart">
                 <Nav.Link>Shopping Cart</Nav.Link>
               </LinkContainer>
             </Nav.Item>
@@ -41,22 +40,7 @@ function UserProfile() {
           </div>
         </Nav>
       </div>
-      {/* <div className="fl w-75"> */}
       <Outlet context={[user, setUser]} />
-      {/* </div> */}
-      {/* {page === 0 ? (
-        <>Xd</>
-      ) : page === 1 ? (
-        <>Xd2</>
-      ) : page === 2 ? (
-        <>Xd3</>
-      ) : (
-        // redirect to the UploadItem page
-        <LinkContainer to="/upload">
-          <Nav.Link> Click here to list an item </Nav.Link>
-        </LinkContainer>
-        // <>Xd4</>
-      )} */}
     </div>
   );
 }
