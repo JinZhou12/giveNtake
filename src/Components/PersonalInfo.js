@@ -37,11 +37,6 @@ function PersonalInfo() {
           <Form.Control plaintext readOnly defaultValue={user.credit} />
         </Col>
       </Form.Group>
-
-      {/* <Form.Group calssName="mb-3">
-        <Form.Label>Email</Form.Label>
-        <Form.Control placeholder="setEmail" disabled/>
-      </Form.Group> */}
     </Form>
   );
 }

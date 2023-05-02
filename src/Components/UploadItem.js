@@ -172,8 +172,6 @@ function UploadItem(props) {
   const [size, setSize] = useState("");
   const [condition, setCondition] = useState("");
 
-  const [images, setImages] = useState([]);
-
   const onTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -202,6 +200,8 @@ function UploadItem(props) {
     setCondition(event.target.labels[0].innerText);
   };
 
+  const [images, setImages] = useState([]);
+
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file, index) => {
       const reader = new FileReader();
@@ -215,8 +215,8 @@ function UploadItem(props) {
 
   const onSubmitItem = (event) => {
     event.preventDefault();
-    console.log(size);
-    console.log(condition);
+    // console.log(size);
+    // console.log(condition);
     if (!images.length) {
       alert("Please upload an image");
       return;

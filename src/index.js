@@ -13,6 +13,8 @@ import DonationList from "./Components/DonationList";
 import UploadItem from "./Components/UploadItem";
 import PersonalInfo from "./Components/PersonalInfo";
 import Address from "./Components/Address";
+import ItemDetail from "./Components/ItemDetail";
+import ShoppingCart from "./Components/ShoppingCart";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -55,15 +57,26 @@ const router = createBrowserRouter([
             path: "/profile",
             element: <PersonalInfo />,
           },
+
           {
             path: "/profile/upload",
             element: <UploadItem />,
           },
+
+          {
+            path: "/profile/shopping_cart",
+            element: <ShoppingCart />,
+          },
+
           {
             path: "/profile/address",
             element: <Address />,
           },
         ],
+      },
+      {
+        path: "/item_detail/:itemId",
+        element: <ItemDetail />,
       },
     ],
   },

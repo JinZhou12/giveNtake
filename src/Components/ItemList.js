@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import PageButton from "./PageButton";
+import { useNavigate } from "react-router-dom";
 import "../CSS/ItemList.css";
 
 const Item = (props) => {
+  let navigate = useNavigate();
   let photo = JSON.parse(props.item.photo).src;
+  const onDetialClick = () => {
+    // navigate("/item_detail", { state: { item: props.item } });
+    navigate(`/item_detail/${props.item.item_id}`);
+  };
+
   return (
-    <div className="item flex-column">
+    <div className="item flex-column" onClick={onDetialClick}>
       <img
         className="itemimg"
         src={photo}
@@ -26,7 +33,7 @@ const Item = (props) => {
   );
 };
 
-function ItemList(props) {
+const ItemList = (props) => {
   const itemPerPage = 30;
   const [user, setUser, category, setCategory, gender, setGender] =
     useOutletContext();
@@ -89,6 +96,6 @@ function ItemList(props) {
       </div>
     </div>
   );
-}
+};
 
 export default ItemList;
