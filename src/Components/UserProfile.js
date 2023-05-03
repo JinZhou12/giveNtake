@@ -11,6 +11,11 @@ function UserProfile() {
   let navigate = useNavigate();
 
   const [user, setUser] = useOutletContext();
+  // console.log(user);
+
+  const onShoppingCartClick = () => {
+    navigate("/profile/shopping_cart/${user.email}");
+  };
 
   return (
     <div className="profile-page flex">
@@ -28,9 +33,9 @@ function UserProfile() {
               </LinkContainer>
             </Nav.Item>
             <Nav.Item>
-              <LinkContainer to="/profile/shopping_cart">
-                <Nav.Link>Shopping Cart</Nav.Link>
-              </LinkContainer>
+              {/* <LinkContainer to="/profile/shopping_cart/:"> */}
+              <Nav.Link onClick={onShoppingCartClick}>Shopping Cart</Nav.Link>
+              {/* </LinkContainer> */}
             </Nav.Item>
             <Nav.Item>
               <LinkContainer to="/profile/history">

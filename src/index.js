@@ -66,7 +66,7 @@ const router = createBrowserRouter([
           },
 
           {
-            path: "/profile/shopping_cart",
+            path: "/profile/shopping_cart/:userEmail",
             element: <ShoppingCart />,
           },
 
