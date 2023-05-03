@@ -110,7 +110,7 @@ function ShoppingCart() {
   }
 
   return (
-    <div className="flex-column">
+    <div className="flex-column w-75">
       {cartItems.length === 0 ? (
         <div>
           <h4> Add item to the cart</h4>
@@ -119,8 +119,8 @@ function ShoppingCart() {
         <div>
           {Object.keys(cartItems).map((key) => {
             return (
-              <div>
-                <div className="col-md-3 left">
+              <div className="flex ba b--silver br2 w-80">
+                <div className="">
                   <img
                     className="itemimg"
                     src={JSON.parse(cartItems[key].photo).src}
@@ -129,24 +129,28 @@ function ShoppingCart() {
                     height="200%"
                   />
                 </div>
-                <div>{cartItems[key].title}</div>
-                <div>{cartItems[key].price}</div>
-                <div>{cartItems[key].condition}</div>
-                <div>{cartItems[key].size}</div>
-                <div className="">
-                  <input
-                    onClick={() => {
-                      deletItemFromCart(cartItems[key].item_id);
-                    }}
-                    className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
-                    type="submit"
-                    value="Delete"
-                  />
+                <div className="flex-column w-100 mt4">
+                  <div className="flex justify-between pr4">
+                    <div className="b">{cartItems[key].title}</div>
+                    <div>{cartItems[key].price}</div>
+                  </div>
+                  <div>{cartItems[key].condition}</div>
+                  <div className="mb3">Size: {cartItems[key].size}</div>
+                  <div className="">
+                    <input
+                      onClick={() => {
+                        deletItemFromCart(cartItems[key].item_id);
+                      }}
+                      className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
+                      type="submit"
+                      value="Delete"
+                    />
+                  </div>
                 </div>
               </div>
             );
           })}
-          <div className="">
+          <div className="mt3">
             <input
               onClick={() => onClickPurchase(user.email)}
               className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"

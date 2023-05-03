@@ -35,7 +35,7 @@ function ItemDetail() {
 
       const data = await response.json();
       if (data.err) {
-        alert("Error:${data.message}");
+        alert("Error: " + data.err);
       } else {
         alert(data.message);
       }
