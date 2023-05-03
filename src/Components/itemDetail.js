@@ -17,6 +17,12 @@ function ItemDetail() {
   // console.log(user);
 
   const onCartClick = async () => {
+    if (!user) {
+      alert("Please login to add to cart");
+      navigate("/login");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:4000/cart", {
         method: "post",
@@ -29,7 +35,7 @@ function ItemDetail() {
 
       const data = await response.json();
       if (data.err) {
-        alert(`Error:${data.err}`);
+        alert("Error: " + data.err);
       } else {
         alert(data.message);
       }
