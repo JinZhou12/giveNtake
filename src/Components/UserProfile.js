@@ -38,7 +38,7 @@ function UserProfile() {
               {/* </LinkContainer> */}
             </Nav.Item>
             <Nav.Item>
-              <LinkContainer to="/profile/history">
+              <LinkContainer to="/profile/purchase_history">
                 <Nav.Link>History</Nav.Link>
               </LinkContainer>
             </Nav.Item>
