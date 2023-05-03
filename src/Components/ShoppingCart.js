@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 function ShoppingCart() {
   let navigate = useNavigate();
-  const [cartItems, setCartItems] = React.useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useOutletContext();
+  const [total, setTotal] = useState(0);
 
   const fetchCartItems = async () => {
     try {
@@ -34,7 +35,13 @@ function ShoppingCart() {
     fetchCartItems();
   }, []);
 
-  //   console.log(cartItems);
+  useEffect(() => {
+    let total = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+      total += Number(cartItems[i].price);
+    }
+    setTotal(total);
+  }, [cartItems]);
 
   const deletItemFromCart = async (item_id) => {
     try {
@@ -61,12 +68,7 @@ function ShoppingCart() {
   };
 
   const onClickPurchase = async () => {
-    let total = 0;
     let hasError = false;
-
-    for (let i = 0; i < cartItems.length; i++) {
-      total += Number(cartItems[i].price);
-    }
 
     for (let i = 0; i < cartItems.length; i++) {
       const error = await Purchase(cartItems[i].item_id, total);
@@ -119,7 +121,7 @@ function ShoppingCart() {
         <div>
           {Object.keys(cartItems).map((key) => {
             return (
-              <div className="flex ba b--silver br2 w-80">
+              <div className="flex ba b--silver br2 w-80 mb3">
                 <div className="">
                   <img
                     className="itemimg"
@@ -130,11 +132,11 @@ function ShoppingCart() {
                   />
                 </div>
                 <div className="flex-column w-100 mt4">
-                  <div className="flex justify-between pr4">
+                  <div className="flex justify-between pr4 ">
                     <div className="b">{cartItems[key].title}</div>
                     <div>{cartItems[key].price}</div>
                   </div>
-                  <div>{cartItems[key].condition}</div>
+                  <div>Condition: {cartItems[key].condition}</div>
                   <div className="mb3">Size: {cartItems[key].size}</div>
                   <div className="">
                     <input
@@ -150,9 +152,12 @@ function ShoppingCart() {
               </div>
             );
           })}
+          <div>Total: {total}</div>
           <div className="mt3">
             <input
-              onClick={() => onClickPurchase(user.email)}
+              onClick={() => {
+                onClickPurchase();
+              }}
               className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
               value="Purchase"

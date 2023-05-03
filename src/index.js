@@ -20,6 +20,7 @@ import DonationDetail from "./Components/DonationDetail";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "reactjs-popup/dist/index.css";
 import "./CSS/index.css";
 import "./CSS/App.css";
 import "tachyons";
