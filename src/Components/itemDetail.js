@@ -6,32 +6,40 @@ import Row from "react-bootstrap/Row";
 import IconButton from "@mui/material/IconButton";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import "../CSS/UploadItem.css";
-import { useOutlet, useOutletContext, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 
 function ItemDetail() {
+  let navigate = useNavigate();
   const [user, setUser] = useOutletContext();
   const { itemId } = useParams();
   const [item, setItem] = useState("");
 
-  const onCartClick = () => {
-    fetch("http://localhost:4000/cart", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        user_email: user.email,
-        item_id: item.item_id,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.err) {
-          alert("Error:${data.message}");
-        } else {
-          alert(data.message);
-        }
-      });
-  };
   // console.log(user);
+
+  const onCartClick = async () => {
+    
+    try {
+      const response = await fetch("http://localhost:4000/cart", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_email: user.email,
+          item_id: item.item_id,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.err) {
+        alert("Error:${data.message}");
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      // console.log(err);
+      console.error("Error:", err);
+      alert("Error adding to cart");
+    }
+  };
 
   useEffect(() => {
     const myHeaders = new Headers();

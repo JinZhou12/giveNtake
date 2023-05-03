@@ -39,7 +39,7 @@ const Navigation = (props) => {
           </LinkContainer>
           {user ? (
             <>
-              <LinkContainer to="/cart">
+              <LinkContainer to="/profile/shopping_cart/${user.email}">
                 <Nav.Link> Shopping Cart </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/profile">

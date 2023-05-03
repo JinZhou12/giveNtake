@@ -241,7 +241,7 @@ function UploadItem(props) {
         if (data.err) {
           alert(data.err);
         } else {
-          console.log("success");
+          alert("success");
           navigate("/profile");
         }
       });
