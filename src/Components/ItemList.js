@@ -59,7 +59,7 @@ const ItemList = (props) => {
 
   return (
     <div className="flex-column">
-      <div className="list">
+      <div className="list ph4">
         {Object.keys(items).map((key) => {
           if (key < page * itemPerPage && key >= (page - 1) * itemPerPage) {
             return <Item item={items[key]} key={key} />;
