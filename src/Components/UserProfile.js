@@ -49,7 +49,7 @@ function UserProfile() {
             </Nav.Item>
             {user.charity ? (
               <Nav.Item>
-                <LinkContainer to="/profile/upload">
+                <LinkContainer to="/profile/donation">
                   <Nav.Link> Start Donation </Nav.Link>
                 </LinkContainer>
               </Nav.Item>

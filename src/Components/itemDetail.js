@@ -98,7 +98,7 @@ function ItemDetail() {
             Price
           </Form.Label>
           <Col sm="10">
-            <Form.Control plaintext readOnly defaultValue={"$" + item.price} />
+            <Form.Control plaintext readOnly defaultValue={item.price} />
           </Col>
 
           <Form.Label column sm="2">
@@ -106,6 +106,13 @@ function ItemDetail() {
           </Form.Label>
           <Col sm="10">
             <Form.Control plaintext readOnly defaultValue={item.condition} />
+          </Col>
+
+          <Form.Label column sm="2">
+            Gender
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control plaintext readOnly defaultValue={item.gender} />
           </Col>
 
           <Form.Label column sm="2">
@@ -121,13 +128,13 @@ function ItemDetail() {
           <Col sm="10">
             <Form.Control plaintext readOnly defaultValue={item.category} />
           </Col>
-
+          {/* 
           <Form.Label column sm="2">
             Status
           </Form.Label>
           <Col sm="10">
             <Form.Control plaintext readOnly defaultValue={item.item_status} />
-          </Col>
+          </Col> */}
         </Form.Group>
 
         <Form.Label column sm="2">

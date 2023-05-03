@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 
 const EditAddress = (props) => {
+  let navigate = useNavigate();
   const [addr1, setAddr1] = useState("");
   const [addr2, setAddr2] = useState("");
   const [state, setState] = useState("");
@@ -52,7 +53,7 @@ const EditAddress = (props) => {
           if (data.err) {
             alert(data.err);
           } else {
-            props.setAddress(data);
+            // props.setAddress(data);
           }
         });
     } else {
@@ -73,10 +74,11 @@ const EditAddress = (props) => {
           if (data.err) {
             alert(data.err);
           } else {
-            props.setAddress(data);
+            // props.setAddress(data);
           }
         });
     }
+    navigate("/profile/address");
   };
 
   return (
@@ -131,9 +133,12 @@ const EditAddress = (props) => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit" onClick={onSubmit}>
-        Submit
-      </Button>
+      <input
+        onClick={onSubmit}
+        className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
+        type="submit"
+        value="Submit"
+      />
     </Form>
   );
 };
