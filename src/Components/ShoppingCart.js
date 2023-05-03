@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 function ShoppingCart() {
+  let navigate = useNavigate();
   const [cartItems, setCartItems] = React.useState([]);
   const [user, setUser] = useOutletContext();
 
@@ -59,33 +60,54 @@ function ShoppingCart() {
     }
   };
 
-  console.log(cartItems);
+  const onClickPurchase = async () => {
+    let total = 0;
+    let hasError = false;
 
-  const onClickPurchase = async (user_email,item_id) => {
+    for (let i = 0; i < cartItems.length; i++) {
+      total += Number(cartItems[i].price);
+    }
+
+    for (let i = 0; i < cartItems.length; i++) {
+      const error = await Purchase(cartItems[i].item_id, total);
+      if (error) {
+        console.log("out");
+        hasError = true;
+        break;
+      }
+    }
+
+    console.log(hasError);
+    if (!hasError) {
+      fetchCartItems();
+      navigate("/");
+    }
+  };
+
+  async function Purchase(item_id, total) {
     try {
       const response = await fetch("http://localhost:4000/purchase", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          user_email: user_email,
+          user_email: user.email,
           item_id: item_id,
+          total: total,
         }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.err) {
-            console.log(data.err);
-          } else {
-            fetchCartItems();
-          }
-        });
+      });
+
+      const data = await response.json();
+
+      if (data.err) {
+        alert(data.err);
+        return true;
+      } else {
+        setUser(data);
+      }
     } catch (err) {
       console.error("Error:", err);
-      alert("Error deleting item from cart");
     }
-  };
-
-
+  }
 
   return (
     <div className="flex-column">
@@ -126,9 +148,7 @@ function ShoppingCart() {
           })}
           <div className="">
             <input
-              // onClick={() => {
-              //   deletItemFromCart(cartItems[key].item_id);
-              // }}
+              onClick={() => onClickPurchase(user.email)}
               className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
               value="Purchase"
