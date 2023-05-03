@@ -11,10 +11,31 @@ function UserProfile() {
   let navigate = useNavigate();
 
   const [user, setUser] = useOutletContext();
-  // console.log(user);
 
   const onShoppingCartClick = () => {
     navigate("/profile/shopping_cart/${user.email}");
+  };
+
+  const refreshUser = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/user", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: user.email,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.err) {
+        console.log(data.err);
+      } else {
+        setUser(data);
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("Error fetching user");
+    }
   };
 
   return (
@@ -24,7 +45,7 @@ function UserProfile() {
           <div className="sidebar-sticky flex-column">
             <Nav.Item>
               <LinkContainer to="/profile">
-                <Nav.Link>Personal Information</Nav.Link>
+                <Nav.Link onClick={refreshUser}>Personal Information</Nav.Link>
               </LinkContainer>
             </Nav.Item>
             <Nav.Item>
