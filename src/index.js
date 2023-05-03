@@ -17,6 +17,7 @@ import ItemDetail from "./Components/ItemDetail";
 import ShoppingCart from "./Components/ShoppingCart";
 import CreateDonation from "./Components/CreateDonation";
 import DonationDetail from "./Components/DonationDetail";
+import GetPurchaseHistory from "./Components/PurchaseHistory";
 import { donations } from "./Consts/donations";
 import { clothes } from "./Consts/clothes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
           {
             path: "/profile/donation",
             element: <CreateDonation />,
+          },
+          {
+            path: "/profile/purchase_history",
+            element: <GetPurchaseHistory />,
           },
         ],
       },

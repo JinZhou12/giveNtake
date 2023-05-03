@@ -40,7 +40,6 @@ function ItemDetail() {
         alert(data.message);
       }
     } catch (err) {
-      // console.log(err);
       console.error("Error:", err);
       alert("Error adding to cart");
     }
