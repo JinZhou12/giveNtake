@@ -17,7 +17,6 @@ function ItemDetail() {
   // console.log(user);
 
   const onCartClick = async () => {
-    
     try {
       const response = await fetch("http://localhost:4000/cart", {
         method: "post",
@@ -30,12 +29,11 @@ function ItemDetail() {
 
       const data = await response.json();
       if (data.err) {
-        alert("Error:${data.message}");
+        alert(`Error:${data.err}`);
       } else {
         alert(data.message);
       }
     } catch (err) {
-      // console.log(err);
       console.error("Error:", err);
       alert("Error adding to cart");
     }
