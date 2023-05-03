@@ -8,9 +8,6 @@ function GetPurchaseHistory() {
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [user, setUser] = useOutletContext();
   const [rating, setRating] = React.useState(5);
-  //   const [rateLock, setRateLock] = React.useState(false);
-
-  //   console.log(user.email);
 
   useEffect(() => {
     fetch("http://localhost:4000/purchase_history", {
@@ -70,41 +67,43 @@ function GetPurchaseHistory() {
       ) : (
         <div>
           <h1>Purchase History</h1>
-          {Object.keys(purchaseHistory).map((key) => {
-            return (
-              <div>
-                <div>Item ID: {purchaseHistory[key].item_id}</div>
-                <div>Purchase ID: {purchaseHistory[key].purchase_id}</div>
-                <div>Title: {purchaseHistory[key].title}</div>
-                <div>Price: {purchaseHistory[key].price}</div>
-                <div>Size: {purchaseHistory[key].size}</div>
-                <div>Condition: {purchaseHistory[key].condition}</div>
-                <div>
-                  <Typography component="legend">Add Rating</Typography>
-                  <Rating
-                    name="simple-controlled"
-                    value={rating}
-                    onChange={(event, rating) => {
-                      setRating(rating);
-                    }}
-                  />
-                </div>
+          <div className="flex">
+            {Object.keys(purchaseHistory).map((key) => {
+              return (
+                <div className="ba br2 mr2">
+                  <div className="pl2 pv2">
+                    <div>Item ID: {purchaseHistory[key].item_id}</div>
+                    <div>Purchase ID: {purchaseHistory[key].purchase_id}</div>
+                    <div>Title: {purchaseHistory[key].title}</div>
+                    <div>Price: {purchaseHistory[key].price}</div>
+                    <div>Size: {purchaseHistory[key].size}</div>
+                    <div>Condition: {purchaseHistory[key].condition}</div>
+                    <div>
+                      <Typography component="legend">Add Rating</Typography>
+                      <Rating
+                        name="simple-controlled"
+                        value={rating}
+                        onChange={(event, rating) => {
+                          setRating(rating);
+                        }}
+                      />
+                    </div>
 
-                <div className="mt3">
-                  <input
-                    onClick={() =>
-                      addRating(rating, purchaseHistory[key].purchase_id)
-                    }
-                    className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
-                    type="submit"
-                    value="Submit"
-                  />
+                    <div className="mt3">
+                      <input
+                        onClick={() =>
+                          addRating(rating, purchaseHistory[key].purchase_id)
+                        }
+                        className="b ph3 pv2 ba b--black bg-transparent grow pointer f6 dib"
+                        type="submit"
+                        value="Submit"
+                      />
+                    </div>
+                  </div>
                 </div>
-
-                {/* <div>Purchase Time: {purchaseHistory[key].time}</div> */}
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       )}
     </div>

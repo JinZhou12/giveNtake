@@ -60,7 +60,7 @@ function ListItem(props) {
   };
 
   return (
-    <div className="flex justify-center w-100 mt3 pt2 bt overflow-y-scroll">
+    <div className="flex justify-center w-100 mt3 pt2 bt">
       {!user ? (
         <div className="flex-column mt2">
           <div>Log in to see your items</div>
@@ -72,7 +72,7 @@ function ListItem(props) {
           />
         </div>
       ) : (
-        <div className="flex">
+        <div className="flex flex-wrap overflow-y-scroll justify-center ph4">
           {Object.keys(items).map((key) => {
             return (
               <Item
